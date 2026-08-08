@@ -1,6 +1,7 @@
 // Load environment variables from .env into process.env
 require('dotenv').config();
-
+// add near the top, with your other requires
+const eventRoutes = require('./routes/eventRoutes');
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -13,6 +14,8 @@ app.use(express.json());
 
 // Middleware: allows our frontend (different origin) to call this API
 app.use(cors());
+// add after app.use(cors()); and before your app.get('/') route
+app.use('/api/events', eventRoutes);
 
 // Connect to MongoDB using the connection string from .env
 mongoose.connect(process.env.MONGO_URI)
