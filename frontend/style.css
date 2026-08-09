@@ -75,6 +75,11 @@ body {
   background: #4338ca;
 }
 
+.btn-primary:disabled {
+  background: #a5b4fc;
+  cursor: not-allowed;
+}
+
 .btn-secondary {
   background: #e5e7eb;
   color: #1a1a1a;
@@ -92,10 +97,13 @@ body {
   gap: 1.2rem;
 }
 
-.empty-state {
+.empty-state,
+.loading-state {
   text-align: center;
   color: #6b7280;
+  grid-column: 1 / -1;
   margin-top: 2rem;
+  padding: 2rem 0;
 }
 
 /* ---- Event cards ---- */
@@ -108,6 +116,12 @@ body {
   flex-direction: column;
   gap: 0.4rem;
   position: relative;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.event-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  transform: translateY(-2px);
 }
 
 .event-card h3 {
@@ -222,7 +236,25 @@ body {
 }
 
 /* ---- Responsive ---- */
+
+/* Tablets */
+@media (max-width: 900px) {
+  .event-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+}
+
+/* Phones */
 @media (max-width: 600px) {
+  .site-header {
+    padding: 1.5rem 1rem;
+  }
+  .site-header h1 {
+    font-size: 1.4rem;
+  }
+  .container {
+    padding: 1rem;
+  }
   .controls {
     flex-direction: column;
   }
@@ -230,5 +262,11 @@ body {
   .controls select,
   .controls button {
     width: 100%;
+  }
+  .event-grid {
+    grid-template-columns: 1fr;
+  }
+  .modal {
+    max-width: 100%;
   }
 }

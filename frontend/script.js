@@ -33,6 +33,9 @@ const descriptionField = document.getElementById('description');
 // ---------- FETCH & RENDER ----------
 
 async function fetchEvents() {
+  eventGrid.innerHTML = '<p class="loading-state">Loading events...</p>';
+  emptyState.hidden = true;
+
   try {
     const response = await fetch(API_URL);
 
@@ -181,10 +184,20 @@ eventModal.addEventListener('click', (e) => {
   if (e.target === eventModal) closeModal();
 });
 
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && !eventModal.hidden) {
+    closeModal();
+  }
+});
+
 // ---------- CREATE / UPDATE (form submit) ----------
 
 eventForm.addEventListener('submit', async (e) => {
   e.preventDefault();
+
+  const submitBtn = eventForm.querySelector('button[type="submit"]');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Saving...';
 
   const eventData = {
     title: titleField.value.trim(),
@@ -223,6 +236,9 @@ eventForm.addEventListener('submit', async (e) => {
     await fetchEvents();
   } catch (err) {
     alert(`Error saving event: ${err.message}`);
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Save Event';
   }
 });
 
