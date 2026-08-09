@@ -1,7 +1,7 @@
 // Base URL of our backend API.
 // While developing locally, this points at our Express server.
 // Update this to your deployed Render URL when you deploy (Step 12).
-const API_URL = 'http://localhost:5000/api/events';
+const API_URL = 'https://campus-event-api-wy0g.onrender.com/api/events';
 
 // Keep a copy of all events in memory so we can filter/search
 // without re-fetching from the server every time.

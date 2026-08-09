@@ -15,7 +15,9 @@ const app = express();
 app.use(express.json());
 
 // Middleware: allows our frontend (different origin) to call this API
-app.use(cors());
+app.use(cors({
+  origin: 'https://campus-event-discovery.vercel.app'
+}));
 
 // Connect to MongoDB using the connection string from .env
 mongoose.connect(process.env.MONGO_URI)
