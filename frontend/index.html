@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Event & Club Discovery</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <h1>🎉 Campus Event & Club Discovery</h1>
+    <p>Find out what's happening on campus — before it's too late.</p>
+  </header>
+
+  <main class="container">
+
+    <!-- Controls: search + filters + add button -->
+    <section class="controls">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search events..."
+        aria-label="Search events"
+      >
+
+      <select id="clubFilter" aria-label="Filter by club">
+        <option value="">All Clubs</option>
+      </select>
+
+      <select id="categoryFilter" aria-label="Filter by category">
+        <option value="">All Categories</option>
+      </select>
+
+      <input type="date" id="dateFilter" aria-label="Filter by date">
+
+      <button id="addEventBtn" class="btn-primary">+ Add Event</button>
+    </section>
+
+    <!-- Where event cards get inserted by JavaScript -->
+    <section id="eventGrid" class="event-grid">
+      <!-- Cards injected here dynamically -->
+    </section>
+
+    <!-- Empty state, shown when no events match -->
+    <p id="emptyState" class="empty-state" hidden>No events found.</p>
+
+  </main>
+
+  <!-- Add/Edit Event Modal (hidden by default) -->
+  <div id="eventModal" class="modal-overlay" hidden>
+    <div class="modal">
+      <h2 id="modalTitle">Add Event</h2>
+      <form id="eventForm">
+        <input type="hidden" id="eventId">
+
+        <label for="title">Title *</label>
+        <input type="text" id="title" required>
+
+        <label for="club">Club *</label>
+        <input type="text" id="club" required>
+
+        <label for="category">Category *</label>
+        <input type="text" id="category" required placeholder="e.g. Tech, Cultural, Sports">
+
+        <label for="date">Date *</label>
+        <input type="date" id="date" required>
+
+        <label for="venue">Venue *</label>
+        <input type="text" id="venue" required>
+
+        <label for="description">Description</label>
+        <textarea id="description" rows="3"></textarea>
+
+        <div class="modal-actions">
+          <button type="button" id="cancelBtn" class="btn-secondary">Cancel</button>
+          <button type="submit" class="btn-primary">Save Event</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
