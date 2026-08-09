@@ -2,7 +2,7 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box; /* padding/border included in element width, avoids layout surprises */
+  box-sizing: border-box;
 }
 
 body {
@@ -85,7 +85,7 @@ body {
   font-size: 0.9rem;
 }
 
-/* ---- Event grid & cards (styled fully once JS injects cards) ---- */
+/* ---- Event grid ---- */
 .event-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -98,6 +98,72 @@ body {
   margin-top: 2rem;
 }
 
+/* ---- Event cards ---- */
+.event-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.2rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  position: relative;
+}
+
+.event-card h3 {
+  font-size: 1.1rem;
+  margin-top: 0.3rem;
+}
+
+.event-meta {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+.event-desc {
+  font-size: 0.88rem;
+  margin-top: 0.3rem;
+  color: #374151;
+}
+
+.status-badge {
+  align-self: flex-start;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+
+.status-upcoming { background: #dbeafe; color: #1d4ed8; }
+.status-ongoing  { background: #dcfce7; color: #15803d; }
+.status-past     { background: #f3f4f6; color: #6b7280; }
+
+.card-actions {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.6rem;
+}
+
+.card-actions button {
+  flex: 1;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.btn-edit {
+  background: #eef2ff;
+  color: #4338ca;
+}
+
+.btn-delete {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
 /* ---- Modal ---- */
 .modal-overlay {
   position: fixed;
@@ -107,6 +173,10 @@ body {
   align-items: center;
   justify-content: center;
   padding: 1rem;
+}
+
+.modal-overlay[hidden] {
+  display: none;
 }
 
 .modal {
